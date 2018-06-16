@@ -30,6 +30,7 @@ public class MyEndpoint {
 //        response = new MyBean();
 //        response.setData(name);
 
+
 //
 //        tell_joke tellJoke = new tell_joke();
 //        String joke = tellJoke.jokeTelling();

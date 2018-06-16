@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            
+
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
     }
