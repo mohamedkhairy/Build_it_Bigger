@@ -21,39 +21,12 @@ import khairy.com.joke_lib.tell_joke;
         )
 )
 public class MyEndpoint {
-    private static final Logger logger = Logger.getLogger(MyBean.class.getName());
 
-//    name = "sayHi"
     /** A simple endpoint method that takes a name and says Hi back */
     @ApiMethod(name = "sayHi")
     public MyBean sayHi(MyBean response) {
-//        response = new MyBean();
-//        response.setData(name);
-
-
-//
-//        tell_joke tellJoke = new tell_joke();
-//        String joke = tellJoke.jokeTelling();
-//        response.setData(joke);
-
-
 
         return response;
     }
 
-//    @Named("name") String name
-
-//    @ApiMethod(name = "getjoke")
-//    public MyBean getjoke(MyBean response) {
-////        MyBean response = new MyBean();
-////        response.setData(name);
-//
-//
-////        tell_joke tellJoke = new tell_joke();
-////        String joke = tellJoke.jokeTelling();
-////        response.setData(joke);
-//
-//
-//        return response;
-//    }
 }

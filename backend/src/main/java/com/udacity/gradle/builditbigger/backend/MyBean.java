@@ -13,10 +13,6 @@ public class MyBean {
         return myData;
     }
 
-    public void setData(String myData) {
-        this.myData = myData;
-    }
-
     public MyBean() {
         this.myData = new tell_joke().jokeTelling();
     }
