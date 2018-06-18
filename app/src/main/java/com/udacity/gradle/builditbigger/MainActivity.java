@@ -60,7 +60,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressbar);
-        new EndpointsAsyncTask(MainActivity.this , progressBar).execute();
+        new EndpointsAsyncTask(MainActivity.this , progressBar).execute(new EndpointsAsyncTask.OnJokeCallback() {
+            @Override
+            public void resultCallback(String result) {
+                Intent intent = new Intent(MainActivity.this , JokeViewerActivity.class);
+                intent.putExtra("result" , result);
+                startActivity(intent);
+            }
+        });
     }
 
 }

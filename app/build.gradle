@@ -22,7 +22,10 @@ android {
         versionName "1.0"
         multiDexEnabled true
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId "com.udacity.gradle.builditbigger.tests"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        testHandleProfiling true
+        testFunctionalTest true
     }
 
     buildTypes {
@@ -44,7 +47,17 @@ android {
             applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
-    sourceSets { paid { java.srcDirs = ['src/paid/java', 'src/paid/java/'] } }
+    sourceSets {
+        androidTest.setRoot('src/androidTest')
+        paid { java.srcDirs = ['src/paid/java', 'src/paid/java/'] } 
+        main {java.srcDirs = ['src/main/java', 'src/androidTest/java'] }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-annotations:26.1.0'
+    }
 }
 
 dependencies {
@@ -62,6 +75,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+
     testImplementation 'junit:junit:4.12'
+
+//    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
 }

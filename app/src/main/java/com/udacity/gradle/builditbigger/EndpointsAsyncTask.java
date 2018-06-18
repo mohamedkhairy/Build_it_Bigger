@@ -19,8 +19,9 @@ import java.io.IOException;
 
 import khairy.com.jokeviewer.JokeViewerActivity;
 
-public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<EndpointsAsyncTask.OnJokeCallback, Void, String> {
     private MyApi myApiService = null;
+    private OnJokeCallback jokecallback;
     private Context context;
     private ProgressBar progressBar;
 
@@ -28,6 +29,8 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
         this.context = context;
         this.progressBar = progressBar;
     }
+
+
 
 
     @Override
@@ -39,7 +42,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Void... voids) {
+    protected String doInBackground(OnJokeCallback... onJokeCallbacks) {
         progressBar.setVisibility(View.VISIBLE);
         if(myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
@@ -47,7 +50,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
                     // options for running against local devappserver
                     // - 10.0.2.2 is localhost's IP address in Android emulator
                     // - turn off compression when running against local devappserver
-                    .setRootUrl("https://gradleproject-207205.appspot.com/_ah/api/")
+                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
                         .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                             @Override
                             public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
@@ -56,7 +59,9 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
                         });
 
             myApiService = builder.build();
+
         }
+        jokecallback = onJokeCallbacks[0];
 
         try {
             return myApiService.sayHi(new MyBean()).execute().getData();
@@ -70,9 +75,16 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context , JokeViewerActivity.class);
-        intent.putExtra("result" , result);
-        context.startActivity(intent);
+        if (jokecallback!=null){
+            jokecallback.resultCallback(result);
+        }
+
         progressBar.setVisibility(View.GONE);
     }
+
+
+    public interface OnJokeCallback {
+        void resultCallback(String result);
+    }
+
 }

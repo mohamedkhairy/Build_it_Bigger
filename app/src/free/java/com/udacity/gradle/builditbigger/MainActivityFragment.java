@@ -21,7 +21,7 @@ public class MainActivityFragment extends Fragment {
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("195658C3C9829CA0DDD6D754C1120FF7")
+                .addTestDevice("ABCD1234")
                 .build();
 
         mAdView.loadAd(adRequest);

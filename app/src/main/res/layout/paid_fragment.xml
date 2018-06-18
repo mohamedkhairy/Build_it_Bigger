@@ -25,7 +25,7 @@
         android:id="@+id/Paid_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Paid Version"
+        android:text="@string/paid_version"
         android:layout_marginTop="100dp"/>
 
 
