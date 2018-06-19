@@ -9,7 +9,7 @@
   }
  },
  "basePath": "/_ah/api/myApi/v1/",
- "baseUrl": "https://gradleproject-207205.appspot.com/_ah/api/myApi/v1/",
+ "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/",
  "batchPath": "batch",
  "description": "This is an API",
  "discoveryVersion": "v1",
@@ -24,10 +24,6 @@
    "httpMethod": "POST",
    "id": "myApi.sayHi",
    "path": "sayHi",
-   "request": {
-    "$ref": "MyBean",
-    "parameterName": "resource"
-   },
    "response": {
     "$ref": "MyBean"
    },
@@ -85,7 +81,7 @@
   }
  },
  "protocol": "rest",
- "rootUrl": "https://gradleproject-207205.appspot.com/_ah/api/",
+ "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
  "schemas": {
   "MyBean": {
    "id": "MyBean",

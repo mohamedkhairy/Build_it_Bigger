@@ -40,17 +40,20 @@ android {
     productFlavors {
         free {
             dimension "tier"
-            applicationId "com.udacity.gradle.builditbigger.free"
+            applicationIdSuffix ".free"
         }
         paid {
             dimension "tier"
-            applicationId "com.udacity.gradle.builditbigger.paid"
+            applicationIdSuffix ".paid"
         }
     }
     sourceSets {
         androidTest.setRoot('src/androidTest')
         paid { java.srcDirs = ['src/paid/java', 'src/paid/java/'] } 
         main {java.srcDirs = ['src/main/java', 'src/androidTest/java'] }
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
+        }
     }
 }
 
@@ -65,7 +68,7 @@ dependencies {
     endpointsServer project(path: ':backend', configuration: 'endpoints')
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
@@ -77,8 +80,6 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.12'
-
-//    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
